@@ -4,7 +4,7 @@ import { useFinance } from '../../context/FinanceContext';
 import { formatCurrency } from '../../utils/formatters';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const STATIC_COLORS = ['#8b5cf6', '#22c55e', '#f59e0b', '#ef4444', '#0ea5e9', '#ec4899', '#14b8a6'];
+const STATIC_COLORS = ['var(--text-primary)', 'var(--text-secondary)', 'var(--text-muted)', 'var(--text-faint)', 'var(--border-hover)', 'var(--border-default)', 'var(--bg-elevated)'];
 
 // Custom active shape that highlights on hover without overlapping center
 const renderActiveShape = (props) => {

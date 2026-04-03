@@ -75,9 +75,6 @@ export function Layout({ children }) {
           className="absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: 'linear-gradient(to right, var(--text-muted) 1px, transparent 1px), linear-gradient(to bottom, var(--text-muted) 1px, transparent 1px)', backgroundSize: '4rem 4rem' }}
         />
-        {/* Glow orbs */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full blur-[120px]" style={{ backgroundColor: 'rgba(139, 92, 246, 0.04)' }} />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full blur-[120px]" style={{ backgroundColor: 'rgba(34, 197, 94, 0.03)' }} />
       </div>
       
       <Sidebar />

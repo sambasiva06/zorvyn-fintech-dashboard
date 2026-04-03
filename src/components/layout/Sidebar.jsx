@@ -17,13 +17,13 @@ const PulseLogo = () => (
     <motion.div 
       whileHover={{ rotate: 8, scale: 1.1 }}
       transition={{ type: 'spring', stiffness: 400 }}
-      className="h-9 w-9 rounded-xl flex items-center justify-center shadow-lg relative"
+      className="h-9 w-9 flex items-center justify-center relative"
       style={{ 
-        background: 'linear-gradient(135deg, var(--accent), #7c3aed)',
-        boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
+        backgroundColor: 'var(--text-primary)',
+        color: 'var(--bg-base)'
       }}
     >
-      <Activity className="h-4.5 w-4.5 text-white" strokeWidth={2.5} />
+      <Activity className="h-4.5 w-4.5" strokeWidth={2.5} style={{ color: 'var(--bg-base)' }} />
       <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/0 to-white/15" />
     </motion.div>
     <div className="flex flex-col">

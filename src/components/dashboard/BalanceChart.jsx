@@ -9,9 +9,9 @@ function ChartDot({ cx, cy, payload, index }) {
   return (
     <g>
       {/* Outer glow ring */}
-      <circle cx={cx} cy={cy} r={6} fill="rgba(139, 92, 246, 0.15)" stroke="none" />
+      <circle cx={cx} cy={cy} r={6} fill="var(--text-primary)" opacity="0.1" stroke="none" />
       {/* Main dot */}
-      <circle cx={cx} cy={cy} r={3.5} fill="var(--accent, #8b5cf6)" stroke="var(--bg-base, #09090b)" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={3.5} fill="var(--text-primary)" stroke="var(--bg-base)" strokeWidth={2} />
     </g>
   );
 }
@@ -21,14 +21,14 @@ function ActiveDot({ cx, cy, payload }) {
   return (
     <g>
       {/* Pulse ring */}
-      <circle cx={cx} cy={cy} r={14} fill="rgba(139, 92, 246, 0.08)" stroke="none">
+      <circle cx={cx} cy={cy} r={14} fill="var(--text-primary)" stroke="none">
         <animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.1;0.05;0.1" dur="2s" repeatCount="indefinite" />
       </circle>
       {/* Glow */}
-      <circle cx={cx} cy={cy} r={8} fill="rgba(139, 92, 246, 0.2)" stroke="none" />
+      <circle cx={cx} cy={cy} r={8} fill="var(--text-primary)" opacity="0.15" stroke="none" />
       {/* Main dot */}
-      <circle cx={cx} cy={cy} r={5} fill="#8b5cf6" stroke="#fff" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={5} fill="var(--text-primary)" stroke="var(--bg-base)" strokeWidth={2} />
     </g>
   );
 }
@@ -123,14 +123,13 @@ export function BalanceChart() {
           <AreaChart data={filteredData} margin={{ top: 10, right: 10, left: -12, bottom: 0 }}>
             <defs>
               <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.2}/>
-                <stop offset="40%" stopColor="#8b5cf6" stopOpacity={0.08}/>
-                <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0}/>
+                <stop offset="0%" stopColor="var(--text-primary)" stopOpacity={0.1}/>
+                <stop offset="40%" stopColor="var(--text-primary)" stopOpacity={0.04}/>
+                <stop offset="100%" stopColor="var(--text-primary)" stopOpacity={0}/>
               </linearGradient>
               <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#7c3aed"/>
-                <stop offset="50%" stopColor="#8b5cf6"/>
-                <stop offset="100%" stopColor="#a78bfa"/>
+                <stop offset="0%" stopColor="var(--text-primary)"/>
+                <stop offset="100%" stopColor="var(--text-primary)"/>
               </linearGradient>
             </defs>
             <CartesianGrid 

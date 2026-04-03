@@ -26,10 +26,10 @@
   --border-hover: rgba(255, 255, 255, 0.18);
   --border-active: rgba(139, 92, 246, 0.35);
 
-  --accent: #8b5cf6;
-  --accent-hover: #a78bfa;
-  --accent-muted: rgba(139, 92, 246, 0.12);
-  --accent-glow: rgba(139, 92, 246, 0.08);
+  --accent: #ffffff;
+  --accent-hover: #e4e4e7;
+  --accent-muted: rgba(255, 255, 255, 0.1);
+  --accent-glow: transparent;
 
   --success: #22c55e;
   --success-muted: rgba(34, 197, 94, 0.1);
@@ -51,8 +51,8 @@
   --glass-bg: rgba(19, 19, 22, 0.8);
   --glass-border: rgba(255, 255, 255, 0.08);
 
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.15);
+  --shadow-card: none;
+  --shadow-card-hover: none;
 
   --sb-track-color: transparent;
   --sb-thumb-color: #27272a;
@@ -79,10 +79,10 @@
   --border-hover: rgba(0, 0, 0, 0.15);
   --border-active: rgba(124, 58, 237, 0.35);
 
-  --accent: #7c3aed;
-  --accent-hover: #6d28d9;
-  --accent-muted: rgba(124, 58, 237, 0.1);
-  --accent-glow: rgba(124, 58, 237, 0.06);
+  --accent: #000000;
+  --accent-hover: #333333;
+  --accent-muted: rgba(0, 0, 0, 0.05);
+  --accent-glow: transparent;
 
   --success: #16a34a;
   --success-muted: rgba(22, 163, 74, 0.08);
@@ -94,8 +94,8 @@
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(0, 0, 0, 0.06);
 
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(124, 58, 237, 0.12);
+  --shadow-card: none;
+  --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.06);
 
   --sb-thumb-color: #d1d5db;
 }
@@ -161,30 +161,17 @@ h1, h2, h3, h4, h5, h6 {
 .card-surface {
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 20px;
+  border-radius: 0px;
   box-shadow: var(--shadow-card);
   position: relative;
   overflow: hidden;
   transition: all 0.35s var(--ease-smooth);
 }
 
-.card-surface::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s var(--ease-smooth);
-  pointer-events: none;
-}
+
 
 .card-surface:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.card-surface:hover::before {
-  opacity: 1;
+  border-color: var(--text-primary);
 }
 
 /* Glass variant */
@@ -218,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
 .bento-tile {
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 20px;
+  border-radius: 0px;
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -228,21 +215,10 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 0;
 }
 
-.bento-tile::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s var(--ease-smooth);
-  pointer-events: none;
-}
 
-.bento-tile:hover::before { opacity: 1; }
 
 .bento-tile:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-card-hover);
+  border-color: var(--text-primary);
 }
 
 .bento-wide { grid-column: span 2; min-width: 0; }
@@ -401,41 +377,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Animated Border ── */
-@keyframes border-rotate {
-  0% { --angle: 0deg; }
-  100% { --angle: 360deg; }
-}
-
 .gradient-border-animated {
   position: relative;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-default);
+  transition: border-color 0.3s var(--ease-smooth);
 }
 
-.gradient-border-animated::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from var(--angle, 0deg),
-    transparent,
-    var(--accent),
-    transparent,
-    transparent
-  );
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
-
-.gradient-border-animated:hover::after {
-  opacity: 0.5;
-  animation: border-rotate 4s linear infinite;
+.gradient-border-animated:hover {
+  border-color: var(--text-primary);
 }
 
 /* ── Focus Ring ── */
