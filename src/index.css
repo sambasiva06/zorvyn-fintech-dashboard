@@ -11,29 +11,29 @@
 /* ── Theme Variables (Dark — Default) ── */
 :root,
 [data-theme="dark"] {
-  --bg-base: #09090b;
-  --bg-surface: #131316;
-  --bg-elevated: #1c1c22;
-  --bg-hover: #252530;
-  --bg-input: rgba(255, 255, 255, 0.04);
+  --bg-base: #18181b;
+  --bg-surface: #18181b;
+  --bg-elevated: #202023;
+  --bg-hover: #27272a;
+  --bg-input: rgba(255, 255, 255, 0.03);
 
-  --text-primary: #fafafa;
+  --text-primary: #ffffff;
   --text-secondary: #a1a1aa;
-  --text-muted: #52525b;
+  --text-muted: #71717a;
   --text-faint: #3f3f46;
 
-  --border-default: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --border-active: rgba(139, 92, 246, 0.35);
+  --border-default: transparent;
+  --border-hover: transparent;
+  --border-active: #d97706;
 
-  --accent: #ffffff;
-  --accent-hover: #e4e4e7;
-  --accent-muted: rgba(255, 255, 255, 0.1);
+  --accent: #d97706; /* Copper */
+  --accent-hover: #f59e0b;
+  --accent-muted: rgba(217, 119, 6, 0.1);
   --accent-glow: transparent;
 
-  --success: #22c55e;
-  --success-muted: rgba(34, 197, 94, 0.1);
-  --danger: #ef4444;
+  --success: #10b981; /* Mint Green */
+  --success-muted: rgba(16, 185, 129, 0.15);
+  --danger: #ef4444; /* Neon Red */
   --danger-muted: rgba(239, 68, 68, 0.1);
   --warning: #f59e0b;
   --warning-muted: rgba(245, 158, 11, 0.1);
@@ -48,11 +48,9 @@
   --chart-6: #ec4899;
   --chart-7: #14b8a6;
 
-  --glass-bg: rgba(19, 19, 22, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.08);
-
-  --shadow-card: none;
-  --shadow-card-hover: none;
+  --shadow-card: 4px 4px 12px #0a0a0b, -4px -4px 12px #26262b;
+  --shadow-card-hover: 6px 6px 16px #0a0a0b, -6px -6px 16px #26262b;
+  --shadow-inset: inset 4px 4px 12px #0a0a0b, inset -4px -4px 12px #26262b;
 
   --sb-track-color: transparent;
   --sb-thumb-color: #27272a;
@@ -62,43 +60,7 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Theme Variables (Light) ── */
-[data-theme="light"] {
-  --bg-base: #f8f9fb;
-  --bg-surface: #ffffff;
-  --bg-elevated: #f1f3f5;
-  --bg-hover: #e8eaed;
-  --bg-input: rgba(0, 0, 0, 0.03);
 
-  --text-primary: #111118;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --text-faint: #d1d5db;
-
-  --border-default: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.15);
-  --border-active: rgba(124, 58, 237, 0.35);
-
-  --accent: #000000;
-  --accent-hover: #333333;
-  --accent-muted: rgba(0, 0, 0, 0.05);
-  --accent-glow: transparent;
-
-  --success: #16a34a;
-  --success-muted: rgba(22, 163, 74, 0.08);
-  --danger: #dc2626;
-  --danger-muted: rgba(220, 38, 38, 0.08);
-  --warning: #d97706;
-  --warning-muted: rgba(217, 119, 6, 0.08);
-
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.06);
-
-  --shadow-card: none;
-  --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.06);
-
-  --sb-thumb-color: #d1d5db;
-}
 
 /* ── Base Styles ── */
 html {
@@ -160,8 +122,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-surface {
   background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: 0px;
+  border: none;
+  border-radius: 24px;
   box-shadow: var(--shadow-card);
   position: relative;
   overflow: hidden;
@@ -171,7 +133,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .card-surface:hover {
-  border-color: var(--text-primary);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* Glass variant */
@@ -218,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .bento-tile:hover {
-  border-color: var(--text-primary);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .bento-wide { grid-column: span 2; min-width: 0; }
@@ -276,7 +238,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════ */
 
 .transaction-row-even {
-  background: var(--bg-input);
+  background: transparent;
 }
 
 .transaction-row-odd {
@@ -284,12 +246,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .transaction-row-hover {
-  transition: background 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+  transition: all 0.25s var(--ease-smooth);
+  border-radius: 12px;
 }
 
 .transaction-row-hover:hover {
-  background: var(--accent-muted) !important;
-  box-shadow: inset 3px 0 0 var(--accent);
+  background: var(--bg-surface) !important;
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.99);
 }
 
 /* ═══════════════════════════════════════════════

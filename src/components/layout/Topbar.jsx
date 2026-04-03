@@ -6,7 +6,7 @@ import { clsx } from 'clsx';
 import { exportToCSV, exportToJSON } from '../../utils/formatters';
 
 export function Topbar() {
-  const { role, changeRole, setIsMobileMenuOpen, currentView, theme, toggleTheme, transactions } = useFinance();
+  const { role, changeRole, setIsMobileMenuOpen, currentView, transactions } = useFinance();
   const [showExportMenu, setShowExportMenu] = useState(false);
   const exportRef = useRef(null);
 
@@ -123,30 +123,7 @@ export function Topbar() {
           </AnimatePresence>
         </div>
 
-        {/* Theme Toggle */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={toggleTheme}
-          className="hidden sm:flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200"
-          style={{ color: 'var(--text-muted)' }}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--bg-hover)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          <AnimatePresence mode="wait">
-            {theme === 'dark' ? (
-              <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <Sun className="h-4 w-4" />
-              </motion.div>
-            ) : (
-              <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <Moon className="h-4 w-4" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.button>
 
-        <div className="h-5 w-[1px] mx-0.5" style={{ backgroundColor: 'var(--border-default)' }} />
 
         {/* Role Switcher */}
         <div 

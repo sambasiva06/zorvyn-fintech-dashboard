@@ -9,12 +9,6 @@ export function FinanceProvider({ children }) {
   const [currentView, setCurrentView] = useState('Dashboard');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Theme: default dark, persisted in localStorage
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('pulse_theme');
-    return saved || 'dark';
-  });
-
   // Sort config for transactions
   const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'desc' });
 
@@ -36,17 +30,11 @@ export function FinanceProvider({ children }) {
     localStorage.setItem('pulse_transactions', JSON.stringify(transactions));
   }, [transactions]);
 
-  // Apply theme to DOM
+  // Apply dark theme to DOM
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add('theme-transitioning');
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('pulse_theme', theme);
-    setTimeout(() => root.classList.remove('theme-transitioning'), 350);
-  }, [theme]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    root.setAttribute('data-theme', 'dark');
+    localStorage.setItem('pulse_theme', 'dark');
   }, []);
 
   const addTransaction = useCallback((t) => {
@@ -168,8 +156,6 @@ export function FinanceProvider({ children }) {
       setCurrentView,
       isMobileMenuOpen,
       setIsMobileMenuOpen,
-      theme,
-      toggleTheme,
       sortConfig,
       setSortConfig,
       ...computedData,

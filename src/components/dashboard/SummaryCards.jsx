@@ -29,11 +29,7 @@ function StatCard({ card, index, large }) {
 
   return (
     <>
-      {/* Ambient hover glow */}
-      <div 
-        className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-        style={{ backgroundColor: colors.glow }}
-      />
+
 
       <div className="flex justify-between items-start relative z-10">
         <div>
