@@ -225,6 +225,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.35s var(--ease-smooth);
   box-shadow: var(--shadow-card);
   min-height: 0;
+  min-width: 0;
 }
 
 .bento-tile::before {
@@ -244,10 +245,10 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-card-hover);
 }
 
-.bento-wide { grid-column: span 2; }
-.bento-tall { grid-row: span 2; }
-.bento-hero { grid-column: span 2; }
-.bento-full { grid-column: span 3; }
+.bento-wide { grid-column: span 2; min-width: 0; }
+.bento-tall { grid-row: span 2; min-width: 0; }
+.bento-hero { grid-column: span 2; min-width: 0; }
+.bento-full { grid-column: span 3; min-width: 0; }
 
 @media (max-width: 1024px) {
   .bento-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }

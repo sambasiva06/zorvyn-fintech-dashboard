@@ -77,7 +77,7 @@ export function Topbar() {
       
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Export Button */}
-        <div className="relative" ref={exportRef}>
+        <div className="relative hidden sm:block" ref={exportRef}>
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowExportMenu(!showExportMenu)}
@@ -127,7 +127,7 @@ export function Topbar() {
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={toggleTheme}
-          className="h-8 w-8 flex items-center justify-center rounded-lg transition-all duration-200"
+          className="hidden sm:flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200"
           style={{ color: 'var(--text-muted)' }}
           onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--bg-hover)'; }}
           onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
@@ -150,7 +150,7 @@ export function Topbar() {
 
         {/* Role Switcher */}
         <div 
-          className="p-0.5 rounded-xl flex backdrop-blur-sm"
+          className="hidden sm:flex p-0.5 rounded-xl backdrop-blur-sm"
           style={{ backgroundColor: 'var(--bg-elevated)', border: '1px solid var(--border-default)' }}
         >
           <motion.button
