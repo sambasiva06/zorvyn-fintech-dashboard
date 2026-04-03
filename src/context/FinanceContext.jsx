@@ -55,7 +55,9 @@ export function FinanceProvider({ children }) {
     setTimeout(() => {
       setRole(newRole);
       if (newRole === 'admin') {
-        setCurrentView('Transactions');
+        setCurrentView('AdminDashboard');
+      } else {
+        setCurrentView('Dashboard');
       }
       setIsRoleLoading(false);
     }, 600);

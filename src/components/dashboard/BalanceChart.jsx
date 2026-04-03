@@ -9,9 +9,9 @@ function ChartDot({ cx, cy, payload, index }) {
   return (
     <g>
       {/* Outer glow ring */}
-      <circle cx={cx} cy={cy} r={6} fill="var(--text-primary)" opacity="0.1" stroke="none" />
+      <circle cx={cx} cy={cy} r={6} fill="var(--accent)" opacity="0.1" stroke="none" />
       {/* Main dot */}
-      <circle cx={cx} cy={cy} r={3.5} fill="var(--text-primary)" stroke="var(--bg-base)" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={3.5} fill="var(--accent)" stroke="var(--bg-base)" strokeWidth={2} />
     </g>
   );
 }
@@ -21,14 +21,14 @@ function ActiveDot({ cx, cy, payload }) {
   return (
     <g>
       {/* Pulse ring */}
-      <circle cx={cx} cy={cy} r={14} fill="var(--text-primary)" stroke="none">
+      <circle cx={cx} cy={cy} r={14} fill="var(--accent)" stroke="none">
         <animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="0.1;0.05;0.1" dur="2s" repeatCount="indefinite" />
       </circle>
       {/* Glow */}
-      <circle cx={cx} cy={cy} r={8} fill="var(--text-primary)" opacity="0.15" stroke="none" />
+      <circle cx={cx} cy={cy} r={8} fill="var(--accent)" opacity="0.15" stroke="none" />
       {/* Main dot */}
-      <circle cx={cx} cy={cy} r={5} fill="var(--text-primary)" stroke="var(--bg-base)" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={5} fill="var(--accent)" stroke="var(--bg-base)" strokeWidth={2} />
     </g>
   );
 }
@@ -123,14 +123,20 @@ export function BalanceChart() {
           <AreaChart data={filteredData} margin={{ top: 10, right: 10, left: -12, bottom: 0 }}>
             <defs>
               <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="var(--text-primary)" stopOpacity={0.1}/>
-                <stop offset="40%" stopColor="var(--text-primary)" stopOpacity={0.04}/>
-                <stop offset="100%" stopColor="var(--text-primary)" stopOpacity={0}/>
+                <stop offset="0%" stopColor="var(--accent)" stopOpacity={0.0}/>
+                <stop offset="100%" stopColor="var(--accent)" stopOpacity={0}/>
               </linearGradient>
               <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="var(--text-primary)"/>
-                <stop offset="100%" stopColor="var(--text-primary)"/>
+                <stop offset="0%" stopColor="var(--accent)"/>
+                <stop offset="100%" stopColor="var(--success)"/>
               </linearGradient>
+              <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
             <CartesianGrid 
               strokeDasharray="4 6" 
@@ -184,11 +190,12 @@ export function BalanceChart() {
               type="monotone" 
               dataKey="balance" 
               stroke="url(#strokeGradient)"
-              strokeWidth={2.5}
+              strokeWidth={3}
               fillOpacity={1} 
               fill="url(#colorBalance)" 
               dot={<ChartDot />}
               activeDot={<ActiveDot />}
+              style={{ filter: 'url(#neonGlow)' }}
             />
           </AreaChart>
         </ResponsiveContainer>

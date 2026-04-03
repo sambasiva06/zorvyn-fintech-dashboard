@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ScanLine, Send, Plus, CreditCard } from 'lucide-react';
+import { useFinance } from '../../context/FinanceContext';
 
 const actions = [
-  { id: 'scan', label: 'Scan N Pay', icon: ScanLine, color: 'var(--text-primary)' },
-  { id: 'send', label: 'Send Money', icon: Send, color: 'var(--text-primary)' },
-  { id: 'add', label: 'Add Funds', icon: Plus, color: 'var(--text-primary)' },
-  { id: 'cards', label: 'My Cards', icon: CreditCard, color: 'var(--text-primary)' },
+  { id: 'scan', label: 'Scan N Pay', icon: ScanLine, color: 'var(--text-primary)', route: 'ScanPay' },
+  { id: 'send', label: 'Send Money', icon: Send, color: 'var(--text-primary)', route: 'SendMoney' },
+  { id: 'add', label: 'Add Funds', icon: Plus, color: 'var(--text-primary)', route: 'AddFunds' },
+  { id: 'cards', label: 'My Cards', icon: CreditCard, color: 'var(--text-primary)', route: 'Cards' },
 ];
 
 const containerVariants = {
@@ -27,6 +28,7 @@ const itemVariants = {
 };
 
 export function CredActionHub() {
+  const { setCurrentView } = useFinance();
   return (
     <motion.div 
       variants={containerVariants}
@@ -39,6 +41,7 @@ export function CredActionHub() {
           key={act.id}
           variants={itemVariants}
           whileTap={{ scale: 0.92 }}
+          onClick={() => setCurrentView(act.route)}
           className="cred-action-btn aspect-square w-full relative group"
         >
           <act.icon 

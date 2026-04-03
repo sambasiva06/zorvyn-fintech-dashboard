@@ -4,7 +4,7 @@ import { useFinance } from '../../context/FinanceContext';
 import { formatCurrency } from '../../utils/formatters';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const STATIC_COLORS = ['var(--text-primary)', 'var(--text-secondary)', 'var(--text-muted)', 'var(--text-faint)', 'var(--border-hover)', 'var(--border-default)', 'var(--bg-elevated)'];
+const STATIC_COLORS = ['var(--accent)', 'var(--success)', 'var(--info)', 'var(--warning)', 'var(--danger)', '#fafafa', 'var(--bg-elevated)'];
 
 // Custom active shape that highlights on hover without overlapping center
 const renderActiveShape = (props) => {
@@ -87,9 +87,9 @@ export function SpendingPieChart() {
               data={displayData}
               cx="50%"
               cy="50%"
-              innerRadius={60}
-              outerRadius={82}
-              paddingAngle={3}
+              innerRadius={55}
+              outerRadius={85}
+              paddingAngle={4}
               dataKey="value"
               stroke="none"
               animationBegin={0}

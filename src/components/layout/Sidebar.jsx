@@ -1,16 +1,8 @@
 import React from 'react';
-import { Home, PieChart, ArrowLeftRight, Settings, CreditCard, X, Activity } from 'lucide-react';
+import { Home, PieChart, ArrowLeftRight, Settings, CreditCard, X, Activity, Shield } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useFinance } from '../../context/FinanceContext';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navigation = [
-  { name: 'Dashboard', icon: Home },
-  { name: 'Transactions', icon: ArrowLeftRight },
-  { name: 'Analytics', icon: PieChart },
-  { name: 'Cards', icon: CreditCard },
-  { name: 'Settings', icon: Settings },
-];
 
 const PulseLogo = () => (
   <div className="flex items-center gap-2.5 select-none group cursor-pointer">
@@ -39,7 +31,20 @@ const navItemVariants = {
 };
 
 export function Sidebar() {
-  const { currentView, setCurrentView, isMobileMenuOpen, setIsMobileMenuOpen } = useFinance();
+  const { currentView, setCurrentView, isMobileMenuOpen, setIsMobileMenuOpen, role } = useFinance();
+
+  const navigation = role === 'admin' 
+    ? [
+        { name: 'AdminDashboard', icon: Shield },
+        { name: 'Settings', icon: Settings },
+      ]
+    : [
+        { name: 'Dashboard', icon: Home },
+        { name: 'Transactions', icon: ArrowLeftRight },
+        { name: 'Analytics', icon: PieChart },
+        { name: 'Cards', icon: CreditCard },
+        { name: 'Settings', icon: Settings },
+      ];
 
   return (
     <div 

@@ -185,6 +185,7 @@ export function Topbar() {
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => setCurrentView('Notifications')}
             className="h-8 w-8 flex items-center justify-center rounded-lg transition-all duration-200 relative"
             style={{ color: 'var(--text-muted)' }}
           >
@@ -199,6 +200,7 @@ export function Topbar() {
           <motion.div 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => setCurrentView('Profile')}
             className="h-8 w-8 rounded-lg flex items-center justify-center transition-all duration-300 cursor-pointer overflow-hidden"
             style={{ 
               border: role === 'admin' ? '1px solid rgba(139, 92, 246, 0.4)' : '1px solid var(--border-default)',
